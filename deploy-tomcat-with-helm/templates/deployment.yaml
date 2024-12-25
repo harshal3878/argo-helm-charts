@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+{{ $apiName := .Values.appName }}
+metadata:
+  name: "tomcat-{{ $apiName }}-deployment"
+  namespace: argocd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "tomcat-{{ $apiName }}"
+  template:
+    metadata:
+      labels:
+        app: "tomcat-{{ $apiName }}"
+    spec:
+      containers:
+        - name: "tomcat-{{ $apiName }}"
+          image: {{ .Values.appImage }}
+          ports:
+            - containerPort: 8080

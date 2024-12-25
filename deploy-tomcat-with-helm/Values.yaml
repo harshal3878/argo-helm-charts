@@ -1,0 +1,2 @@
+appName: war1
+appImage: gcr.io/kodekloud/centos-ssh-enabled:tomcat 
